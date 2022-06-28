@@ -1,0 +1,23 @@
+name: Actions Workflow
+
+on: [push]
+
+jobs:
+  an-action-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action
+        id: greet
+        # uses: github-user/repo@[branch | tag | commit]
+        # uses: actions/hello-world-javascript-action@branch-name
+        # uses: actions/hello-world-javascript-action@tag-name
+        # uses: actions/hello-world-javascript-action@commit-id
+        uses: actions/hello-world-javascript-action@v1
+
+        # to pass params
+        with:
+          who-to-greet: Smahi
+
+      - name: Log greeting time
+        # run: echo "${{ steps.[step-id].outputs.[the-output-holder] }}"
+        run: echo "${{ steps.greet.outputs.time }}"
